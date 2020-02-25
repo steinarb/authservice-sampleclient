@@ -10,10 +10,10 @@
 
     <properties>
         <karaf-feature-name>authservice-sampleclient</karaf-feature-name>
-        <authservice.version>1.4.0</authservice.version>
+        <authservice.version>1.11.1</authservice.version>
+        <shiro.version>1.5.1</shiro.version>
         <jersey-feature.version>1.2.0</jersey-feature.version>
         <pax.web.version>6.0.3</pax.web.version>
-        <shiro.version>1.4.1</shiro.version>
         <junit.jupiter.version>5.4.2</junit.jupiter.version>
         <junit.platform.version>1.4.2</junit.platform.version>
         <mockrunner.version>2.0.1</mockrunner.version>

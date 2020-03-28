@@ -10,7 +10,7 @@
 
     <properties>
         <karaf-feature-name>authservice-sampleclient</karaf-feature-name>
-        <authservice.version>1.11.4</authservice.version>
+        <authservice.version>1.11.5</authservice.version>
         <shiro.version>1.5.1</shiro.version>
         <pax.web.version>7.2.14</pax.web.version>
         <junit.jupiter.version>5.4.2</junit.jupiter.version>

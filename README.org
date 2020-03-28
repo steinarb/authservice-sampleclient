@@ -14,7 +14,7 @@ To verify that this code will run in you karaf instance:
  2. from the karaf console, install the authservice prerequisite
     #+BEGIN_EXAMPLE
       feature:repo-add mvn:no.priv.bang.authservice/authservice/LATEST/xml/features
-      feature:install user-admin-with-derby
+      feature:install user-admin-with-testdb
     #+END_EXAMPLE
  3. From the karaf console install the authservice sample client project
     #+BEGIN_EXAMPLE
@@ -22,7 +22,7 @@ To verify that this code will run in you karaf instance:
       feature:install authservice-sampleclient
     #+END_EXAMPLE
  4. Open the URL http://localhost:8181/sampleauthserviceclient in a web browser
- 5. In the login page that opens, log in with username admin and password
+ 5. In the login page that opens, log in with username admin and password admin
  6. Try visiting the "Admin page (requires the useradmin role)" link and verify that it allowed
  7. Click on the "Back to the top" link
  8. Click on the "Log out (will redirect to the login page)" link (which will redirect to the login page)

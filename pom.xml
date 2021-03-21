@@ -10,9 +10,8 @@
 
     <properties>
         <karaf-feature-name>authservice-sampleclient</karaf-feature-name>
-        <authservice.version>1.12.2</authservice.version>
+        <authservice.version>1.12.3</authservice.version>
         <shiro.version>1.7.0</shiro.version>
-        <pax.web.version>7.2.14</pax.web.version>
         <junit.jupiter.version>5.4.2</junit.jupiter.version>
         <junit.platform.version>1.4.2</junit.platform.version>
         <mockrunner.version>2.0.1</mockrunner.version>
@@ -24,26 +23,35 @@
         <jersey-feature.version>1.8.1</jersey-feature.version>
         <jersey.version>2.33</jersey.version>
         <maven.bundle.plugin.version>4.2.0</maven.bundle.plugin.version>
-        <karaf.version>4.2.5</karaf.version>
+        <karaf.version>4.2.11</karaf.version>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.apache.karaf</groupId>
+                <artifactId>karaf-bom</artifactId>
+                <version>${karaf.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <dependency>
             <groupId>org.ops4j.pax.web</groupId>
             <artifactId>pax-web-api</artifactId>
-            <version>${pax.web.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
-            <version>3.1.0</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.ops4j.pax.web</groupId>
             <artifactId>pax-web-extender-whiteboard</artifactId>
-            <version>${pax.web.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>

@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Steinar Bang
+ * Copyright 2019-2021 Steinar Bang
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  */
 package no.priv.bang.authservice.sampleclient;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -31,20 +31,20 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import no.priv.bang.authservice.sampleclient.AuthserviceSampleClientShiroFilter;
 
-public class AuthserviceSampleClientShiroFilterTest extends ShiroTestBase {
+class AuthserviceSampleClientShiroFilterTest extends ShiroTestBase {
 
     private static MemorySessionDAO session = new MemorySessionDAO();
     private static ServletContext context;
 
     @BeforeAll
-    public static void setup() throws Exception {
+    static void setup() throws Exception {
         getSecurityManager();
         context = mock(ServletContext.class);
         when(context.getContextPath()).thenReturn("/authservice");
     }
 
     @Test
-    public void testAuthenticationSucceed() throws Exception {
+    void testAuthenticationSucceed() throws Exception {
         AuthserviceSampleClientShiroFilter filter = new AuthserviceSampleClientShiroFilter();
         filter.setServletContext(context);
         filter.setRealm(realm);

@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Steinar Bang
+ * Copyright 2019-2021 Steinar Bang
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  */
 package no.priv.bang.authservice.sampleclient;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 import static org.assertj.core.api.Assertions.*;
 
@@ -40,10 +40,10 @@ import com.mockrunner.mock.web.MockHttpSession;
 
 import no.priv.bang.osgi.service.mocks.logservice.MockLogService;
 
-public class AuthserviceSampleClientServletTest extends ShiroTestBase {
+class AuthserviceSampleClientServletTest extends ShiroTestBase {
 
     @Test
-    public void testGetRootIndexHtml() throws Exception {
+    void testGetRootIndexHtml() throws Exception {
         MockLogService logservice = new MockLogService();
 
         HttpServletRequest request = buildGetRootUrl();
@@ -59,7 +59,7 @@ public class AuthserviceSampleClientServletTest extends ShiroTestBase {
     }
 
     @Test
-    public void testAuthenticate() throws Exception {
+    void testAuthenticate() throws Exception {
         MockLogService logservice = new MockLogService();
 
         String originalRequestUrl = "https://myserver.com/someresource";
@@ -81,7 +81,7 @@ public class AuthserviceSampleClientServletTest extends ShiroTestBase {
     }
 
     @Test
-    public void testAuthenticateUnknownAccount() throws Exception {
+    void testAuthenticateUnknownAccount() throws Exception {
         MockLogService logservice = new MockLogService();
 
         String originalRequestUrl = "https://myserver.com/someresource";
@@ -104,7 +104,7 @@ public class AuthserviceSampleClientServletTest extends ShiroTestBase {
     }
 
     @Test
-    public void testAuthenticateWrongPassword() throws Exception {
+    void testAuthenticateWrongPassword() throws Exception {
         MockLogService logservice = new MockLogService();
 
         String originalRequestUrl = "https://myserver.com/someresource";

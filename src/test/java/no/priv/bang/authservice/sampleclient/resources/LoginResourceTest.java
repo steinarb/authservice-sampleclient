@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Steinar Bang
+ * Copyright 2019-2021 Steinar Bang
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,8 +15,7 @@
  */
 package no.priv.bang.authservice.sampleclient.resources;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.*;
@@ -121,7 +120,7 @@ class LoginResourceTest extends ShiroTestBase {
     }
 
     @Test
-    public void testPostLoginWithLockedAccount() throws Exception {
+    void testPostLoginWithLockedAccount() throws Exception {
         try {
             lockAccount("jad");
             // Set up the request
@@ -142,7 +141,7 @@ class LoginResourceTest extends ShiroTestBase {
     }
 
     @Test
-    public void testPostLoginWithAuthenticationException() {
+    void testPostLoginWithAuthenticationException() {
         createSubjectThrowingExceptionAndBindItToThread(AuthenticationException.class);
         MockLogService logservice = new MockLogService();
         LoginResource resource = new LoginResource();
@@ -155,7 +154,7 @@ class LoginResourceTest extends ShiroTestBase {
     }
 
     @Test
-    public void testLoginWithUnexpectedException() {
+    void testLoginWithUnexpectedException() {
         createSubjectThrowingExceptionAndBindItToThread(IllegalArgumentException.class);
         MockLogService logservice = new MockLogService();
         LoginResource resource = new LoginResource();
@@ -170,7 +169,7 @@ class LoginResourceTest extends ShiroTestBase {
     }
 
     @Test
-    public void testLogout() {
+    void testLogout() {
         LoginResource resource = new LoginResource();
         HttpHeaders httpheaders = mock(HttpHeaders.class);
         when(httpheaders.getHeaderString(anyString())).thenReturn("http://localhost/localpath");

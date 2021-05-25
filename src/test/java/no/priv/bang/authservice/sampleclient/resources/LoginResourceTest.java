@@ -197,7 +197,6 @@ class LoginResourceTest extends ShiroTestBase {
         assertEquals(URI.create("http://lorenzo.hjemme.lan"), locationWithOriginalUri);
     }
 
-    @SuppressWarnings("unchecked")
     @Test
     void testLoadHtmlFileWithIOExceptionThrown() throws Exception {
         InputStream mockstream = mock(InputStream.class);

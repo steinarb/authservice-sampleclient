@@ -13,7 +13,7 @@ To verify that this code will run in you karaf instance:
     #+END_EXAMPLE
  2. from the karaf console, install the authservice prerequisite
     #+BEGIN_EXAMPLE
-      feature:repo-add mvn:no.priv.bang.authservice/authservice/LATEST/xml/features
+      feature:repo-add mvn:no.priv.bang.authservice/karaf/LATEST/xml/features
       feature:install user-admin-with-testdb
     #+END_EXAMPLE
  3. From the karaf console install the authservice sample client project

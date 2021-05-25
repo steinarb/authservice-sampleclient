@@ -9,6 +9,8 @@
     <name>Sample client for authservice</name>
 
     <properties>
+        <karaf.version>4.2.11</karaf.version>
+        <maven.bundle.plugin.version>5.1.2</maven.bundle.plugin.version>
         <karaf-feature-name>authservice-sampleclient</karaf-feature-name>
         <authservice.version>1.12.3</authservice.version>
         <shiro.version>1.7.0</shiro.version>
@@ -21,8 +23,6 @@
         <jackson.databind.version>${jackson.version}</jackson.databind.version>
         <jersey-feature.version>1.8.1</jersey-feature.version>
         <jersey.version>2.33</jersey.version>
-        <maven.bundle.plugin.version>4.2.0</maven.bundle.plugin.version>
-        <karaf.version>4.2.11</karaf.version>
     </properties>
 
     <dependencyManagement>

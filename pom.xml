@@ -9,7 +9,7 @@
     <name>Sample client for authservice</name>
 
     <properties>
-        <karaf.version>4.2.11</karaf.version>
+        <karaf.version>4.3.2</karaf.version>
         <maven.bundle.plugin.version>5.1.2</maven.bundle.plugin.version>
         <karaf-feature-name>authservice-sampleclient</karaf-feature-name>
         <authservice.version>1.12.3</authservice.version>

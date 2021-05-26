@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Steinar Bang
+ * Copyright 2019-2021 Steinar Bang
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -41,6 +41,7 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.jsoup.nodes.Document;
 import org.osgi.service.log.LogService;
+import org.osgi.service.log.Logger;
 
 @Path("")
 public class LoginResource extends HtmlTemplateResource {
@@ -50,7 +51,14 @@ public class LoginResource extends HtmlTemplateResource {
     @Context
     HttpHeaders httpHeaders;
 
-    @Inject LogService logservice;
+    LogService logservice;
+    private Logger logger;
+
+    @Inject
+    void setLogservice(LogService logservice) {
+        this.logservice = logservice;
+        this.logger = logservice.getLogger(getClass());
+    }
 
     @GET
     @Path("/login")
@@ -73,26 +81,26 @@ public class LoginResource extends HtmlTemplateResource {
             return Response.status(Response.Status.FOUND).location(URI.create(notNullUrl(redirectUrl))).entity("Login successful!").build();
         } catch(UnknownAccountException e) {
             String message = "unknown user";
-            logservice.log(LogService.LOG_WARNING, LOGIN_ERROR + message, e);
+            logger.warn(LOGIN_ERROR + message, e);
             Document html = loadHtmlFileAndSetMessage(LOGIN_HTML, message, logservice);
             return Response.status(Response.Status.UNAUTHORIZED).entity(html.html()).build();
         } catch (IncorrectCredentialsException  e) {
             String message = "wrong password";
-            logservice.log(LogService.LOG_WARNING, LOGIN_ERROR + message, e);
+            logger.warn(LOGIN_ERROR + message, e);
             Document html = loadHtmlFileAndSetMessage(LOGIN_HTML, message, logservice);
             return Response.status(Response.Status.UNAUTHORIZED).entity(html.html()).build();
         } catch (LockedAccountException  e) {
             String message = "locked account";
-            logservice.log(LogService.LOG_WARNING, LOGIN_ERROR + message, e);
+            logger.warn(LOGIN_ERROR + message, e);
             Document html = loadHtmlFileAndSetMessage(LOGIN_HTML, message, logservice);
             return Response.status(Response.Status.UNAUTHORIZED).entity(html.html()).build();
         } catch (AuthenticationException e) {
             String message = "general authentication error";
-            logservice.log(LogService.LOG_WARNING, LOGIN_ERROR + message, e);
+            logger.warn(LOGIN_ERROR + message, e);
             Document html = loadHtmlFileAndSetMessage(LOGIN_HTML, message, logservice);
             return Response.status(Response.Status.UNAUTHORIZED).entity(html.html()).build();
         } catch (Exception e) {
-            logservice.log(LogService.LOG_ERROR, "Login error: internal server error", e);
+            logger.warn("Login error: internal server error", e);
             throw new InternalServerErrorException();
         } finally {
             token.clear();

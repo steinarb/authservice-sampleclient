@@ -63,7 +63,7 @@ class LoginResourceTest extends ShiroTestBase {
         MockHttpServletResponse dummyresponse = new MockHttpServletResponse();
         createSubjectAndBindItToThread(dummyrequest, dummyresponse);
         LoginResource resource = new LoginResource();
-        resource.logservice = logservice;
+        resource.setLogservice(logservice);
         String username = "admin";
         String password = "admin";
         String redirectUrl = "https://myserver.com/resource";
@@ -81,7 +81,7 @@ class LoginResourceTest extends ShiroTestBase {
         MockHttpServletResponse dummyresponse = new MockHttpServletResponse();
         createSubjectAndBindItToThread(dummyrequest, dummyresponse);
         LoginResource resource = new LoginResource();
-        resource.logservice = logservice;
+        resource.setLogservice(logservice);
         String username = "admin";
         String password = "admin";
         Response response = resource.postLogin(username, password, null);
@@ -96,7 +96,7 @@ class LoginResourceTest extends ShiroTestBase {
         MockHttpServletResponse dummyresponse = new MockHttpServletResponse();
         createSubjectAndBindItToThread(dummyrequest, dummyresponse);
         LoginResource resource = new LoginResource();
-        resource.logservice = logservice;
+        resource.setLogservice(logservice);
         String username = "notauser";
         String password = "admin";
         String redirectUrl = "https://myserver.com/resource";
@@ -111,7 +111,7 @@ class LoginResourceTest extends ShiroTestBase {
         MockHttpServletResponse dummyresponse = new MockHttpServletResponse();
         createSubjectAndBindItToThread(dummyrequest, dummyresponse);
         LoginResource resource = new LoginResource();
-        resource.logservice = logservice;
+        resource.setLogservice(logservice);
         String username = "admin";
         String password = "wrongpassword";
         String redirectUrl = "https://myserver.com/resource";
@@ -129,7 +129,7 @@ class LoginResourceTest extends ShiroTestBase {
             MockHttpServletResponse dummyresponse = new MockHttpServletResponse();
             createSubjectAndBindItToThread(dummyrequest, dummyresponse);
             LoginResource resource = new LoginResource();
-            resource.logservice = logservice;
+            resource.setLogservice(logservice);
             String username = "jad";
             String password = "wrong";
             String redirectUrl = "https://myserver.com/resource";
@@ -145,7 +145,7 @@ class LoginResourceTest extends ShiroTestBase {
         createSubjectThrowingExceptionAndBindItToThread(AuthenticationException.class);
         MockLogService logservice = new MockLogService();
         LoginResource resource = new LoginResource();
-        resource.logservice = logservice;
+        resource.setLogservice(logservice);
         String username = "jad";
         String password = "wrong";
         String redirectUrl = "https://myserver.com/resource";
@@ -158,7 +158,7 @@ class LoginResourceTest extends ShiroTestBase {
         createSubjectThrowingExceptionAndBindItToThread(IllegalArgumentException.class);
         MockLogService logservice = new MockLogService();
         LoginResource resource = new LoginResource();
-        resource.logservice = logservice;
+        resource.setLogservice(logservice);
         String username = "jad";
         String password = "wrong";
         String redirectUrl = "https://myserver.com/resource";
@@ -209,7 +209,7 @@ class LoginResourceTest extends ShiroTestBase {
                 }
             };
         MockLogService logservice = new MockLogService();
-        resource.logservice = logservice;
+        resource.setLogservice(logservice);
 
         assertThrows(InternalServerErrorException.class, () -> {
                 Document html = resource.loadHtmlFile("nonexistingfile.html", logservice);

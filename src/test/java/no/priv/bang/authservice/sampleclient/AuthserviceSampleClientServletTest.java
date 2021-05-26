@@ -158,7 +158,7 @@ class AuthserviceSampleClientServletTest extends ShiroTestBase {
 
     private AuthserviceSampleClientServlet simulateDSComponentActivationAndWebWhiteboardConfiguration(LogService logservice) throws Exception {
         AuthserviceSampleClientServlet servlet = new AuthserviceSampleClientServlet();
-        servlet.setLogservice(logservice);
+        servlet.setLogService(logservice);
         servlet.activate();
         ServletConfig config = createServletConfigWithApplicationAndPackagenameForJerseyResources();
         servlet.init(config);

@@ -14,15 +14,13 @@
         <karaf-feature-name>authservice-sampleclient</karaf-feature-name>
         <authservice.version>1.12.3</authservice.version>
         <shiro.version>1.7.0</shiro.version>
-        <junit.jupiter.version>5.7.2</junit.jupiter.version>
-        <mockrunner.version>2.0.6</mockrunner.version>
         <osgi.version>7.0.0</osgi.version>
         <osgi.service.version>1.4.0</osgi.service.version>
         <osgi.log.version>${osgi.service.version}</osgi.log.version>
-        <jackson.version>2.10.3</jackson.version>
-        <jackson.databind.version>${jackson.version}</jackson.databind.version>
-        <jersey-feature.version>1.8.1</jersey-feature.version>
-        <jersey.version>2.33</jersey.version>
+        <bang-servlet.version>1.5.4</bang-servlet.version>
+        <osgi-service-adapters.version>1.1.2</osgi-service-adapters.version>
+        <junit.jupiter.version>5.7.2</junit.jupiter.version>
+        <mockrunner.version>2.0.6</mockrunner.version>
     </properties>
 
     <dependencyManagement>
@@ -31,6 +29,20 @@
                 <groupId>org.apache.karaf</groupId>
                 <artifactId>karaf-bom</artifactId>
                 <version>${karaf.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>no.priv.bang.servlet</groupId>
+                <artifactId>servlet-bom</artifactId>
+                <version>${bang-servlet.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>no.priv.bang.osgi.service.adapters</groupId>
+                <artifactId>adapters-bom</artifactId>
+                <version>${osgi-service-adapters.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -73,6 +85,66 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>osgi.core</artifactId>
+            <version>${osgi.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>org.osgi.service.log</artifactId>
+            <version>${osgi.log.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>no.priv.bang.osgi.service.adapters</groupId>
+            <artifactId>service-mocks</artifactId>
+            <version>1.0.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>org.osgi.service.component.annotations</artifactId>
+            <version>${osgi.service.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.11.3</version>
+        </dependency>
+        <dependency>
+            <groupId>no.priv.bang.servlet</groupId>
+            <artifactId>servlet.jersey</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>no.priv.bang.servlet</groupId>
+            <artifactId>servlet.jersey</artifactId>
+            <type>xml</type>
+            <classifier>features</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.containers</groupId>
+            <artifactId>jersey-container-servlet</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.inject</groupId>
+            <artifactId>jersey-hk2</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>no.priv.bang.osgi.service.adapters</groupId>
+            <artifactId>adapters.logservice</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>no.priv.bang.osgi.service.adapters</groupId>
+            <artifactId>service-mocks</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
             <scope>test</scope>
@@ -104,78 +176,6 @@
             <artifactId>mockrunner-servlet</artifactId>
             <version>${mockrunner.version}</version>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.osgi</groupId>
-            <artifactId>osgi.core</artifactId>
-            <version>${osgi.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.osgi</groupId>
-            <artifactId>org.osgi.service.log</artifactId>
-            <version>${osgi.log.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>no.priv.bang.osgi.service.adapters</groupId>
-            <artifactId>service-mocks</artifactId>
-            <version>1.0.1</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.osgi</groupId>
-            <artifactId>org.osgi.service.component.annotations</artifactId>
-            <version>${osgi.service.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.glassfish.jersey.inject</groupId>
-            <artifactId>jersey-hk2</artifactId>
-            <version>${jersey.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.glassfish.jersey.containers</groupId>
-            <artifactId>jersey-container-servlet</artifactId>
-            <version>${jersey.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jsoup</groupId>
-            <artifactId>jsoup</artifactId>
-            <version>1.11.3</version>
-        </dependency>
-        <dependency>
-            <groupId>org.glassfish.jersey.media</groupId>
-            <artifactId>jersey-media-json-jackson</artifactId>
-            <version>${jersey.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-annotations</artifactId>
-            <version>${jackson.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-            <version>${jackson.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>${jackson.databind.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>no.priv.bang.karaf</groupId>
-            <artifactId>jersey</artifactId>
-            <version>${jersey-feature.version}</version>
-            <type>xml</type>
-            <classifier>features</classifier>
         </dependency>
     </dependencies>
 

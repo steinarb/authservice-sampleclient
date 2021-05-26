@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Steinar Bang
+ * Copyright 2019-2021 Steinar Bang
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,13 +17,8 @@ package no.priv.bang.authservice.sampleclient;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.http.context.ServletContextHelper;
-import org.osgi.service.http.whiteboard.HttpWhiteboardConstants;
+import org.osgi.service.http.whiteboard.propertytypes.HttpWhiteboardContext;
 
-@Component(
-    property= {
-        HttpWhiteboardConstants.HTTP_WHITEBOARD_CONTEXT_NAME+"=sampleauthserviceclient",
-        HttpWhiteboardConstants.HTTP_WHITEBOARD_CONTEXT_PATH+"=/sampleauthserviceclient"},
-    service=ServletContextHelper.class,
-    immediate=true
-)
+@Component(service=ServletContextHelper.class, immediate=true)
+@HttpWhiteboardContext(name = "sampleauthserviceclient", path = "/sampleauthserviceclient")
 public class AuthserviceSampleClientServletContextHelper extends ServletContextHelper { }

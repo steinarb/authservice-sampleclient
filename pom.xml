@@ -17,6 +17,7 @@
         <osgi.version>7.0.0</osgi.version>
         <osgi.service.version>1.4.0</osgi.service.version>
         <osgi.log.version>${osgi.service.version}</osgi.log.version>
+        <osgi.web.annotations.version>1.1.0</osgi.web.annotations.version>
         <bang-servlet.version>1.5.4</bang-servlet.version>
         <osgi-service-adapters.version>1.1.2</osgi-service-adapters.version>
         <junit.jupiter.version>5.7.2</junit.jupiter.version>
@@ -113,6 +114,12 @@
             <groupId>org.osgi</groupId>
             <artifactId>org.osgi.service.component.annotations</artifactId>
             <version>${osgi.service.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>org.osgi.service.http.whiteboard</artifactId>
+            <version>${osgi.web.annotations.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>

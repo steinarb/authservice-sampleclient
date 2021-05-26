@@ -20,7 +20,11 @@ import javax.servlet.Servlet;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
-import org.osgi.service.http.whiteboard.HttpWhiteboardConstants;
+import org.osgi.service.http.whiteboard.propertytypes.HttpWhiteboardContextSelect;
+import org.osgi.service.http.whiteboard.propertytypes.HttpWhiteboardServletName;
+import org.osgi.service.http.whiteboard.propertytypes.HttpWhiteboardServletPattern;
+
+import static org.osgi.service.http.whiteboard.HttpWhiteboardConstants.*;
 import org.osgi.service.log.LogService;
 
 import no.priv.bang.servlet.jersey.JerseyServlet;
@@ -33,14 +37,10 @@ import no.priv.bang.servlet.jersey.JerseyServlet;
  * functionality both for checking the login state, and for
  * logging in a user
  */
-@Component(
-    property= {
-        HttpWhiteboardConstants.HTTP_WHITEBOARD_SERVLET_PATTERN+"=/*",
-        HttpWhiteboardConstants.HTTP_WHITEBOARD_CONTEXT_SELECT + "=(" + HttpWhiteboardConstants.HTTP_WHITEBOARD_CONTEXT_NAME +"=sampleauthserviceclient)",
-        HttpWhiteboardConstants.HTTP_WHITEBOARD_SERVLET_NAME+"=sampleauthserviceclient"},
-    service=Servlet.class,
-    immediate=true
-)
+@Component(service=Servlet.class, immediate=true)
+@HttpWhiteboardContextSelect("(" + HTTP_WHITEBOARD_CONTEXT_NAME + "=sampleauthserviceclient)")
+@HttpWhiteboardServletName("sampleauthserviceclient")
+@HttpWhiteboardServletPattern("/*")
 public class AuthserviceSampleClientServlet  extends JerseyServlet {
     private static final long serialVersionUID = 6064420153498760622L;
 

@@ -12,8 +12,7 @@
         <karaf.version>4.3.2</karaf.version>
         <maven.bundle.plugin.version>5.1.2</maven.bundle.plugin.version>
         <karaf-feature-name>authservice-sampleclient</karaf-feature-name>
-        <authservice.version>1.13.4</authservice.version>
-        <shiro.version>1.7.0</shiro.version>
+        <authservice.version>1.13.8</authservice.version>
         <bang-servlet.version>1.5.4</bang-servlet.version>
         <osgi-service-adapters.version>1.1.2</osgi-service-adapters.version>
         <junit.jupiter.version>5.7.2</junit.jupiter.version>
@@ -79,13 +78,11 @@
         <dependency>
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-core</artifactId>
-            <version>${shiro.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-web</artifactId>
-            <version>${shiro.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>

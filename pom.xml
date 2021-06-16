@@ -13,7 +13,8 @@
         <maven.bundle.plugin.version>5.1.2</maven.bundle.plugin.version>
         <karaf-feature-name>authservice-sampleclient</karaf-feature-name>
         <authservice.version>1.13.8</authservice.version>
-        <bang-servlet.version>1.5.4</bang-servlet.version>
+        <jersey-feature.version>1.8.4</jersey-feature.version>
+        <bang-servlet.version>1.5.7</bang-servlet.version>
         <osgi-service-adapters.version>1.1.2</osgi-service-adapters.version>
         <junit.jupiter.version>5.7.2</junit.jupiter.version>
         <mockrunner.version>2.0.6</mockrunner.version>
@@ -32,6 +33,13 @@
                 <groupId>no.priv.bang.authservice</groupId>
                 <artifactId>authservice-bom</artifactId>
                 <version>${authservice.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>no.priv.bang.karaf</groupId>
+                <artifactId>jersey-feature-bom</artifactId>
+                <version>${jersey-feature.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

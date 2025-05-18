@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2021 Steinar Bang
+ * Copyright 2019-2025 Steinar Bang
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,7 +38,6 @@ import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.subject.Subject;
 import org.jsoup.nodes.Document;
 import org.osgi.service.log.LogService;
 import org.osgi.service.log.Logger;
@@ -72,32 +71,32 @@ public class LoginResource extends HtmlTemplateResource {
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces("text/html")
     public Response postLogin(@FormParam("username") String username, @FormParam("password") String password, @CookieParam("NSREDIRECT") String redirectUrl) {
-        Subject subject = SecurityUtils.getSubject();
+        var subject = SecurityUtils.getSubject();
 
-        UsernamePasswordToken token = new UsernamePasswordToken(username, password.toCharArray(), true);
+        var token = new UsernamePasswordToken(username, password.toCharArray(), true);
         try {
             subject.login(token);
 
             return Response.status(Response.Status.FOUND).location(URI.create(notNullUrl(redirectUrl))).entity("Login successful!").build();
         } catch(UnknownAccountException e) {
-            String message = "unknown user";
+            var message = "unknown user";
             logger.warn(LOGIN_ERROR + message, e);
-            Document html = loadHtmlFileAndSetMessage(LOGIN_HTML, message, logservice);
+            var html = loadHtmlFileAndSetMessage(LOGIN_HTML, message, logservice);
             return Response.status(Response.Status.UNAUTHORIZED).entity(html.html()).build();
         } catch (IncorrectCredentialsException  e) {
-            String message = "wrong password";
+            var message = "wrong password";
             logger.warn(LOGIN_ERROR + message, e);
             Document html = loadHtmlFileAndSetMessage(LOGIN_HTML, message, logservice);
             return Response.status(Response.Status.UNAUTHORIZED).entity(html.html()).build();
         } catch (LockedAccountException  e) {
             String message = "locked account";
             logger.warn(LOGIN_ERROR + message, e);
-            Document html = loadHtmlFileAndSetMessage(LOGIN_HTML, message, logservice);
+            var html = loadHtmlFileAndSetMessage(LOGIN_HTML, message, logservice);
             return Response.status(Response.Status.UNAUTHORIZED).entity(html.html()).build();
         } catch (AuthenticationException e) {
-            String message = "general authentication error";
+            var message = "general authentication error";
             logger.warn(LOGIN_ERROR + message, e);
-            Document html = loadHtmlFileAndSetMessage(LOGIN_HTML, message, logservice);
+            var html = loadHtmlFileAndSetMessage(LOGIN_HTML, message, logservice);
             return Response.status(Response.Status.UNAUTHORIZED).entity(html.html()).build();
         } catch (Exception e) {
             logger.warn("Login error: internal server error", e);
@@ -111,10 +110,10 @@ public class LoginResource extends HtmlTemplateResource {
     @Path("/logout")
     @Produces("text/html")
     public Response logout() {
-        Subject subject = SecurityUtils.getSubject();
+        var subject = SecurityUtils.getSubject();
 
         subject.logout();
-        String redirectUrl = httpHeaders.getHeaderString("Referer");
+        var redirectUrl = httpHeaders.getHeaderString("Referer");
         return Response.status(Response.Status.FOUND).location(URI.create(redirectUrl)).entity("Login successful!").build();
     }
 
@@ -128,7 +127,7 @@ public class LoginResource extends HtmlTemplateResource {
 
     URI findRedirectLocation() {
         if (httpHeaders != null) {
-            String originLocation = httpHeaders.getHeaderString("Origin");
+            var originLocation = httpHeaders.getHeaderString("Origin");
             if (originLocation != null) {
                 return URI.create(originLocation);
             }

@@ -22,10 +22,8 @@ import java.io.StringWriter;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.session.mgt.eis.MemorySessionDAO;
-import org.apache.shiro.web.mgt.WebSecurityManager;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -44,24 +42,24 @@ class AuthserviceSampleClientShiroFilterTest extends ShiroTestBase {
 
     @Test
     void testAuthenticationSucceed() throws Exception {
-        AuthserviceSampleClientShiroFilter filter = new AuthserviceSampleClientShiroFilter();
+        var filter = new AuthserviceSampleClientShiroFilter();
         filter.setServletContext(context);
         filter.setRealm(realm);
         filter.setSession(session);
         filter.activate();
 
-        HttpServletRequest request = mock(HttpServletRequest.class);
+        var request = mock(HttpServletRequest.class);
         when(request.getMethod()).thenReturn("GET");
-        HttpServletResponse response = mock(HttpServletResponse.class, Mockito.CALLS_REAL_METHODS);
-        StringWriter bodyWriter = new StringWriter();
-        PrintWriter responseWriter = new PrintWriter(bodyWriter);
+        var response = mock(HttpServletResponse.class, Mockito.CALLS_REAL_METHODS);
+        var bodyWriter = new StringWriter();
+        var responseWriter = new PrintWriter(bodyWriter);
         when(response.getWriter()).thenReturn(responseWriter);
 
         // Get the security manager from the filter and log in
         // to verify that the filter setup is working
-        WebSecurityManager securitymanager = filter.getSecurityManager();
-        UsernamePasswordToken token = new UsernamePasswordToken("admin", "admin".toCharArray(), true);
-        AuthenticationInfo info = securitymanager.authenticate(token);
+        var securitymanager = filter.getSecurityManager();
+        var token = new UsernamePasswordToken("admin", "admin".toCharArray(), true);
+        var info = securitymanager.authenticate(token);
         assertEquals(1, info.getPrincipals().asList().size());
     }
 

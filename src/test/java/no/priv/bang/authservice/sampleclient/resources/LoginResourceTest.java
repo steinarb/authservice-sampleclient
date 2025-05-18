@@ -29,8 +29,6 @@ import java.util.stream.Collectors;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.InternalServerErrorException;
 import javax.ws.rs.core.HttpHeaders;
-import javax.ws.rs.core.Response;
-
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.util.ThreadContext;
 import org.apache.shiro.web.subject.WebSubject;
@@ -46,74 +44,74 @@ class LoginResourceTest extends ShiroTestBase {
 
     @Test
     void testGetLogin() {
-        LoginResource resource = new LoginResource();
-        InputStream htmlfile = resource.getLogin();
-        String html = new BufferedReader(new InputStreamReader(htmlfile)).lines().collect(Collectors.joining("+n"));
+        var resource = new LoginResource();
+        var htmlfile = resource.getLogin();
+        var html = new BufferedReader(new InputStreamReader(htmlfile)).lines().collect(Collectors.joining("+n"));
         assertThat(html).startsWith("<html");
     }
 
     @Test
     void testPostLogin() {
-        MockLogService logservice = new MockLogService();
-        HttpSession session = mock(HttpSession.class);
-        MockHttpServletRequest dummyrequest = new MockHttpServletRequest();
+        var logservice = new MockLogService();
+        var session = mock(HttpSession.class);
+        var dummyrequest = new MockHttpServletRequest();
         dummyrequest.setSession(session);
-        MockHttpServletResponse dummyresponse = new MockHttpServletResponse();
+        var dummyresponse = new MockHttpServletResponse();
         createSubjectAndBindItToThread(dummyrequest, dummyresponse);
-        LoginResource resource = new LoginResource();
+        var resource = new LoginResource();
         resource.setLogservice(logservice);
-        String username = "admin";
-        String password = "admin";
-        String redirectUrl = "https://myserver.com/resource";
-        Response response = resource.postLogin(username, password, redirectUrl);
+        var username = "admin";
+        var password = "admin";
+        var redirectUrl = "https://myserver.com/resource";
+        var response = resource.postLogin(username, password, redirectUrl);
         assertEquals(302, response.getStatus());
         assertEquals(redirectUrl, response.getLocation().toString());
     }
 
     @Test
     void testPostLoginWithNullRedirectUrl() {
-        MockLogService logservice = new MockLogService();
-        HttpSession session = mock(HttpSession.class);
-        MockHttpServletRequest dummyrequest = new MockHttpServletRequest();
+        var logservice = new MockLogService();
+        var session = mock(HttpSession.class);
+        var dummyrequest = new MockHttpServletRequest();
         dummyrequest.setSession(session);
-        MockHttpServletResponse dummyresponse = new MockHttpServletResponse();
+        var dummyresponse = new MockHttpServletResponse();
         createSubjectAndBindItToThread(dummyrequest, dummyresponse);
-        LoginResource resource = new LoginResource();
+        var resource = new LoginResource();
         resource.setLogservice(logservice);
-        String username = "admin";
-        String password = "admin";
-        Response response = resource.postLogin(username, password, null);
+        var username = "admin";
+        var password = "admin";
+        var response = resource.postLogin(username, password, null);
         assertEquals(302, response.getStatus());
         assertEquals("", response.getLocation().toString());
     }
 
     @Test
     void testPostLoginWithUnknownUser() {
-        MockLogService logservice = new MockLogService();
-        MockHttpServletRequest dummyrequest = new MockHttpServletRequest();
-        MockHttpServletResponse dummyresponse = new MockHttpServletResponse();
+        var logservice = new MockLogService();
+        var dummyrequest = new MockHttpServletRequest();
+        var dummyresponse = new MockHttpServletResponse();
         createSubjectAndBindItToThread(dummyrequest, dummyresponse);
-        LoginResource resource = new LoginResource();
+        var resource = new LoginResource();
         resource.setLogservice(logservice);
-        String username = "notauser";
-        String password = "admin";
-        String redirectUrl = "https://myserver.com/resource";
-        Response response = resource.postLogin(username, password, redirectUrl);
+        var username = "notauser";
+        var password = "admin";
+        var redirectUrl = "https://myserver.com/resource";
+        var response = resource.postLogin(username, password, redirectUrl);
         assertEquals(401, response.getStatus());
     }
 
     @Test
     void testPostLoginWithWrongPassword() {
-        MockLogService logservice = new MockLogService();
-        MockHttpServletRequest dummyrequest = new MockHttpServletRequest();
-        MockHttpServletResponse dummyresponse = new MockHttpServletResponse();
+        var logservice = new MockLogService();
+        var dummyrequest = new MockHttpServletRequest();
+        var dummyresponse = new MockHttpServletResponse();
         createSubjectAndBindItToThread(dummyrequest, dummyresponse);
-        LoginResource resource = new LoginResource();
+        var resource = new LoginResource();
         resource.setLogservice(logservice);
-        String username = "admin";
-        String password = "wrongpassword";
-        String redirectUrl = "https://myserver.com/resource";
-        Response response = resource.postLogin(username, password, redirectUrl);
+        var username = "admin";
+        var password = "wrongpassword";
+        var redirectUrl = "https://myserver.com/resource";
+        var response = resource.postLogin(username, password, redirectUrl);
         assertEquals(401, response.getStatus());
     }
 
@@ -122,16 +120,16 @@ class LoginResourceTest extends ShiroTestBase {
         try {
             lockAccount("jad");
             // Set up the request
-            MockLogService logservice = new MockLogService();
-            MockHttpServletRequest dummyrequest = new MockHttpServletRequest();
-            MockHttpServletResponse dummyresponse = new MockHttpServletResponse();
+            var logservice = new MockLogService();
+            var dummyrequest = new MockHttpServletRequest();
+            var dummyresponse = new MockHttpServletResponse();
             createSubjectAndBindItToThread(dummyrequest, dummyresponse);
-            LoginResource resource = new LoginResource();
+            var resource = new LoginResource();
             resource.setLogservice(logservice);
-            String username = "jad";
-            String password = "wrong";
-            String redirectUrl = "https://myserver.com/resource";
-            Response response = resource.postLogin(username, password, redirectUrl);
+            var username = "jad";
+            var password = "wrong";
+            var redirectUrl = "https://myserver.com/resource";
+            var response = resource.postLogin(username, password, redirectUrl);
             assertEquals(401, response.getStatus());
         } finally {
             unlockAccount("jad");
@@ -141,69 +139,69 @@ class LoginResourceTest extends ShiroTestBase {
     @Test
     void testPostLoginWithAuthenticationException() {
         createSubjectThrowingExceptionAndBindItToThread(AuthenticationException.class);
-        MockLogService logservice = new MockLogService();
-        LoginResource resource = new LoginResource();
+        var logservice = new MockLogService();
+        var resource = new LoginResource();
         resource.setLogservice(logservice);
-        String username = "jad";
-        String password = "wrong";
-        String redirectUrl = "https://myserver.com/resource";
-        Response response = resource.postLogin(username, password, redirectUrl);
+        var username = "jad";
+        var password = "wrong";
+        var redirectUrl = "https://myserver.com/resource";
+        var response = resource.postLogin(username, password, redirectUrl);
         assertEquals(401, response.getStatus());
     }
 
     @Test
     void testLoginWithUnexpectedException() {
         createSubjectThrowingExceptionAndBindItToThread(IllegalArgumentException.class);
-        MockLogService logservice = new MockLogService();
-        LoginResource resource = new LoginResource();
+        var logservice = new MockLogService();
+        var resource = new LoginResource();
         resource.setLogservice(logservice);
-        String username = "jad";
-        String password = "wrong";
-        String redirectUrl = "https://myserver.com/resource";
+        var username = "jad";
+        var password = "wrong";
+        var redirectUrl = "https://myserver.com/resource";
         assertThrows(InternalServerErrorException.class, () -> resource.postLogin(username, password, redirectUrl));
     }
 
     @Test
     void testLogout() {
-        LoginResource resource = new LoginResource();
-        HttpHeaders httpheaders = mock(HttpHeaders.class);
+        var resource = new LoginResource();
+        var httpheaders = mock(HttpHeaders.class);
         when(httpheaders.getHeaderString(anyString())).thenReturn("http://localhost/localpath");
         resource.httpHeaders = httpheaders;
 
-        Response response = resource.logout();
+        var response = resource.logout();
         assertEquals(302, response.getStatus());
     }
 
     @Test
     void testFindRedirectLocation() {
-        LoginResource resource = new LoginResource();
-        URI locationWithoutOriginalUri = resource.findRedirectLocation();
+        var resource = new LoginResource();
+        var locationWithoutOriginalUri = resource.findRedirectLocation();
         assertEquals(URI.create("../.."), locationWithoutOriginalUri);
 
-        HttpHeaders httpHeadersWithoutOriginalUri = mock(HttpHeaders.class);
+        var httpHeadersWithoutOriginalUri = mock(HttpHeaders.class);
         resource.httpHeaders = httpHeadersWithoutOriginalUri;
-        URI locationAlsoWithoutOriginalUri = resource.findRedirectLocation();
+        var locationAlsoWithoutOriginalUri = resource.findRedirectLocation();
         assertEquals(URI.create("../.."), locationAlsoWithoutOriginalUri);
 
-        HttpHeaders httpHeadersWithOriginalUri = mock(HttpHeaders.class);
+        var httpHeadersWithOriginalUri = mock(HttpHeaders.class);
         when(httpHeadersWithOriginalUri.getHeaderString(anyString())).thenReturn("http://lorenzo.hjemme.lan");
         resource.httpHeaders = httpHeadersWithOriginalUri;
-        URI locationWithOriginalUri = resource.findRedirectLocation();
+        var locationWithOriginalUri = resource.findRedirectLocation();
         assertEquals(URI.create("http://lorenzo.hjemme.lan"), locationWithOriginalUri);
     }
 
     @Test
     void testLoadHtmlFileWithIOExceptionThrown() throws Exception {
-        InputStream mockstream = mock(InputStream.class);
+        var mockstream = mock(InputStream.class);
         when(mockstream.read(any(byte[].class), anyInt(), anyInt())).thenThrow(IOException.class);
 
-        LoginResource resource = new LoginResource() {
+        var resource = new LoginResource() {
             @Override
                 InputStream getClasspathResource(String resource) {
                 return mockstream;
             }
         };
-        MockLogService logservice = new MockLogService();
+        var logservice = new MockLogService();
         resource.setLogservice(logservice);
 
         assertThrows(InternalServerErrorException.class, () -> resource.loadHtmlFile("nonexistingfile.html", logservice));
@@ -219,7 +217,7 @@ class LoginResourceTest extends ShiroTestBase {
 
     @SuppressWarnings({ "rawtypes", "unchecked" })
     private WebSubject createSubjectThrowingExceptionAndBindItToThread(Class exceptionClass) {
-        WebSubject subject = mock(WebSubject.class);
+        var subject = mock(WebSubject.class);
         doThrow(exceptionClass).when(subject).login(any());
         ThreadContext.bind(subject);
         return subject;

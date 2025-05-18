@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Steinar Bang
+ * Copyright 2018-2025 Steinar Bang
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -64,16 +64,16 @@ public class AuthserviceSampleClientShiroFilter extends AbstractShiroFilter { //
 
     @Activate
     public void activate() {
-        IniWebEnvironment environment = new IniWebEnvironment();
+        var environment = new IniWebEnvironment();
         environment.setIni(INI_FILE);
         environment.setServletContext(getServletContext());
         environment.init();
 
-        DefaultWebSessionManager sessionmanager = new DefaultWebSessionManager();
+        var sessionmanager = new DefaultWebSessionManager();
         sessionmanager.setSessionDAO(session);
         sessionmanager.setSessionIdUrlRewritingEnabled(false);
 
-        DefaultWebSecurityManager securityManager = DefaultWebSecurityManager.class.cast(environment.getWebSecurityManager());
+        var securityManager = DefaultWebSecurityManager.class.cast(environment.getWebSecurityManager());
         securityManager.setSessionManager(sessionmanager);
         securityManager.setRealm(realm);
 

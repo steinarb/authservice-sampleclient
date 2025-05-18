@@ -145,12 +145,6 @@
             <classifier>features</classifier>
         </dependency>
         <dependency>
-            <groupId>no.priv.bang.authservice</groupId>
-            <artifactId>karaf</artifactId>
-            <type>xml</type>
-            <classifier>features</classifier>
-        </dependency>
-        <dependency>
             <groupId>org.glassfish.jersey.containers</groupId>
             <artifactId>jersey-container-servlet</artifactId>
             <scope>provided</scope>

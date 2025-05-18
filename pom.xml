@@ -15,7 +15,7 @@
         <karaf-feature-name>authservice-sampleclient</karaf-feature-name>
         <authservice.version>1.13.8</authservice.version>
         <jersey-feature.version>1.9.10</jersey-feature.version>
-        <bang-servlet.version>1.5.7</bang-servlet.version>
+        <bang-servlet.version>2.0.2</bang-servlet.version>
         <osgi-service-adapters.version>1.1.4</osgi-service-adapters.version>
         <junit.jupiter.version>5.12.2</junit.jupiter.version>
         <assertj.version>3.27.3</assertj.version>

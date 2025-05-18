@@ -28,16 +28,23 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import no.priv.bang.authservice.definitions.AuthserviceShiroConfigService;
+import no.priv.bang.authservice.definitions.CipherKeyService;
+
 class AuthserviceSampleClientShiroFilterTest extends ShiroTestBase {
 
     private static MemorySessionDAO session = new MemorySessionDAO();
     private static ServletContext context;
+    private static CipherKeyService cipherKeyService;
+    private static AuthserviceShiroConfigService shiroConfigService;
 
     @BeforeAll
     static void setup() {
         getSecurityManager();
         context = mock(ServletContext.class);
         when(context.getContextPath()).thenReturn("/authservice");
+        cipherKeyService = mock(CipherKeyService.class);
+        shiroConfigService = mock(AuthserviceShiroConfigService.class);
     }
 
     @Test
@@ -46,6 +53,8 @@ class AuthserviceSampleClientShiroFilterTest extends ShiroTestBase {
         filter.setServletContext(context);
         filter.setRealm(realm);
         filter.setSession(session);
+        filter.setCipherKeyService(cipherKeyService);
+        filter.setShiroConfigService(shiroConfigService);
         filter.activate();
 
         var request = mock(HttpServletRequest.class);

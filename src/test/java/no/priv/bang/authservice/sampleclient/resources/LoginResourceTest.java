@@ -34,7 +34,6 @@ import javax.ws.rs.core.Response;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.util.ThreadContext;
 import org.apache.shiro.web.subject.WebSubject;
-import org.jsoup.nodes.Document;
 import org.junit.jupiter.api.Test;
 
 import com.mockrunner.mock.web.MockHttpServletRequest;
@@ -161,10 +160,7 @@ class LoginResourceTest extends ShiroTestBase {
         String username = "jad";
         String password = "wrong";
         String redirectUrl = "https://myserver.com/resource";
-        assertThrows(InternalServerErrorException.class, () -> {
-            Response response = resource.postLogin(username, password, redirectUrl);
-            assertEquals(401, response.getStatus());
-        });
+        assertThrows(InternalServerErrorException.class, () -> resource.postLogin(username, password, redirectUrl));
     }
 
     @Test
@@ -210,10 +206,7 @@ class LoginResourceTest extends ShiroTestBase {
         MockLogService logservice = new MockLogService();
         resource.setLogservice(logservice);
 
-        assertThrows(InternalServerErrorException.class, () -> {
-            Document html = resource.loadHtmlFile("nonexistingfile.html", logservice);
-            assertThat(html.html()).contains("message not found");
-        });
+        assertThrows(InternalServerErrorException.class, () -> resource.loadHtmlFile("nonexistingfile.html", logservice));
     }
 
     private void lockAccount(String username) {

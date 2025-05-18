@@ -2,6 +2,24 @@
 
 This project contains boilerplate code necessary for using the [[https://github.com/steinarb/authservice][authservice pluggable user administration service]].
 
+** Development Status
+[[https://github.com/steinarb/authservice-sampleclient/actions/workflows/authservice-sampleclient-maven-ci-build.yml][file:https://github.com/steinarb/authservice-sampleclient/actions/workflows/authservice-sampleclient-maven-ci-build.yml/badge.svg]]
+[[https://coveralls.io/github/badges/shields?branch=master][file:https://coveralls.io/repos/github/badges/shields/badge.svg?branch=master]]
+[[https://sonarcloud.io/summary/new_code?id=steinarb_authservice-sampleclient][file:https://sonarcloud.io/api/project_badges/measure?project=steinarb_authservice-sampleclient&metric=alert_status#.svg]]
+
+[[https://sonarcloud.io/summary/new_code?id=steinarb_authservice-sampleclient][file:https://sonarcloud.io/images/project_badges/sonarcloud-white.svg]]
+
+[[https://sonarcloud.io/summary/new_code?id=steinarb_authservice-sampleclient][file:https://sonarcloud.io/api/project_badges/measure?project=steinarb_authservice-sampleclient&metric=sqale_index#.svg]]
+[[https://sonarcloud.io/summary/new_code?id=steinarb_authservice-sampleclient][file:https://sonarcloud.io/api/project_badges/measure?project=steinarb_authservice-sampleclient&metric=coverage#.svg]]
+[[https://sonarcloud.io/summary/new_code?id=steinarb_authservice-sampleclient][file:https://sonarcloud.io/api/project_badges/measure?project=steinarb_authservice-sampleclient&metric=ncloc#.svg]]
+[[https://sonarcloud.io/summary/new_code?id=steinarb_authservice-sampleclient][file:https://sonarcloud.io/api/project_badges/measure?project=steinarb_authservice-sampleclient&metric=code_smells#.svg]]
+[[https://sonarcloud.io/summary/new_code?id=steinarb_authservice-sampleclient][file:https://sonarcloud.io/api/project_badges/measure?project=steinarb_authservice-sampleclient&metric=sqale_rating#.svg]]
+[[https://sonarcloud.io/summary/new_code?id=steinarb_authservice-sampleclient][file:https://sonarcloud.io/api/project_badges/measure?project=steinarb_authservice-sampleclient&metric=security_rating#.svg]]
+[[https://sonarcloud.io/summary/new_code?id=steinarb_authservice-sampleclient][file:https://sonarcloud.io/api/project_badges/measure?project=steinarb_authservice-sampleclient&metric=bugs#.svg]]
+[[https://sonarcloud.io/summary/new_code?id=steinarb_authservice-sampleclient][file:https://sonarcloud.io/api/project_badges/measure?project=steinarb_authservice-sampleclient&metric=vulnerabilities#.svg]]
+[[https://sonarcloud.io/summary/new_code?id=steinarb_authservice-sampleclient][file:https://sonarcloud.io/api/project_badges/measure?project=steinarb_authservice-sampleclient&metric=duplicated_lines_density#.svg]]
+[[https://sonarcloud.io/summary/new_code?id=steinarb_authservice-sampleclient][file:https://sonarcloud.io/api/project_badges/measure?project=steinarb_authservice-sampleclient&metric=reliability_rating#.svg]]
+
 ** Try this code
 
 To verify that this code will run in you karaf instance:

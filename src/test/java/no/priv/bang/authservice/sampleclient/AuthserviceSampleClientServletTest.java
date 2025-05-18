@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2021 Steinar Bang
+ * Copyright 2019-2025 Steinar Bang
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -168,7 +168,7 @@ class AuthserviceSampleClientServletTest extends ShiroTestBase {
     private ServletConfig createServletConfigWithApplicationAndPackagenameForJerseyResources() {
         ServletConfig config = mock(ServletConfig.class);
         when(config.getInitParameterNames()).thenReturn(Collections.enumeration(Arrays.asList(ServerProperties.PROVIDER_PACKAGES)));
-        when(config.getInitParameter(eq(ServerProperties.PROVIDER_PACKAGES))).thenReturn("no.priv.bang.authservice.sampleclient.resources");
+        when(config.getInitParameter(ServerProperties.PROVIDER_PACKAGES)).thenReturn("no.priv.bang.authservice.sampleclient.resources");
         ServletContext servletContext = mock(ServletContext.class);
         when(config.getServletContext()).thenReturn(servletContext);
         when(servletContext.getAttributeNames()).thenReturn(Collections.emptyEnumeration());

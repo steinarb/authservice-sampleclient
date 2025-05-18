@@ -14,6 +14,7 @@
         <maven.bundle.plugin.version>6.0.0</maven.bundle.plugin.version>
         <karaf-feature-name>authservice-sampleclient</karaf-feature-name>
         <authservice.version>2.4.0</authservice.version>
+        <shiro.version>2.0.4</shiro.version>
         <jersey-feature.version>1.9.10</jersey-feature.version>
         <bang-servlet.version>2.0.2</bang-servlet.version>
         <osgi-service-adapters.version>1.1.4</osgi-service-adapters.version>
@@ -32,6 +33,13 @@
                 <groupId>org.apache.karaf</groupId>
                 <artifactId>karaf-bom</artifactId>
                 <version>${karaf.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-bom</artifactId>
+                <version>${shiro.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

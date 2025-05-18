@@ -162,9 +162,9 @@ class LoginResourceTest extends ShiroTestBase {
         String password = "wrong";
         String redirectUrl = "https://myserver.com/resource";
         assertThrows(InternalServerErrorException.class, () -> {
-                Response response = resource.postLogin(username, password, redirectUrl);
-                assertEquals(401, response.getStatus());
-            });
+            Response response = resource.postLogin(username, password, redirectUrl);
+            assertEquals(401, response.getStatus());
+        });
     }
 
     @Test
@@ -202,18 +202,18 @@ class LoginResourceTest extends ShiroTestBase {
         when(mockstream.read(any(byte[].class), anyInt(), anyInt())).thenThrow(IOException.class);
 
         LoginResource resource = new LoginResource() {
-                @Override
+            @Override
                 InputStream getClasspathResource(String resource) {
-                    return mockstream;
-                }
-            };
+                return mockstream;
+            }
+        };
         MockLogService logservice = new MockLogService();
         resource.setLogservice(logservice);
 
         assertThrows(InternalServerErrorException.class, () -> {
-                Document html = resource.loadHtmlFile("nonexistingfile.html", logservice);
-                assertThat(html.html()).contains("message not found");
-            });
+            Document html = resource.loadHtmlFile("nonexistingfile.html", logservice);
+            assertThat(html.html()).contains("message not found");
+        });
     }
 
     private void lockAccount(String username) {

@@ -38,6 +38,14 @@ import static org.osgi.service.http.whiteboard.HttpWhiteboardConstants.*;
  * up by the pax web whiteboard.
  *
  * The filter maps URLs in the webapp to users and roles.
+ * 
+ * The filter class inherits {@link AuthserviceShiroFilterBase} and needs to
+ * add OSGi service injections for 4 protected fields: {@link AuthserviceShiroFilterBase#realm}.
+ * {@link AuthserviceShiroFilterBase#session}, {@link AuthserviceShiroFilterBase#cipherKeyService},
+ * and {@link AuthserviceShiroFilterBase#shiroConfigService}, before protected method
+ * {@link AuthserviceShiroFilterBase#createShiroWebEnvironmentFromIniFile} is called
+ * from the SCR component's {@link #activate()} method (invoked when the SCR component
+ * is made active, after all injections are fulfilled.
  */
 @Component(service=Filter.class, immediate=true)
 @HttpWhiteboardContextSelect("(" + HTTP_WHITEBOARD_CONTEXT_NAME + "=sampleauthserviceclient)")

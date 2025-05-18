@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Steinar Bang
+ * Copyright 2019-2025 Steinar Bang
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,7 +17,6 @@ package no.priv.bang.authservice.sampleclient.resources;
 
 import static org.assertj.core.api.Assertions.*;
 import java.io.BufferedReader;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.stream.Collectors;
 
@@ -29,17 +28,17 @@ class LoggedInResourceTest extends ShiroTestBase {
 
     @Test
     void testGetIndex() {
-        LoggedInResource resource = new LoggedInResource();
-        InputStream htmlfile = resource.getIndex();
-        String html = new BufferedReader(new InputStreamReader(htmlfile)).lines().collect(Collectors.joining("+n"));
+        var resource = new LoggedInResource();
+        var htmlfile = resource.getIndex();
+        var html = new BufferedReader(new InputStreamReader(htmlfile)).lines().collect(Collectors.joining("+n"));
         assertThat(html).startsWith("<html");
     }
 
     @Test
     void testGetAdmin() {
-        LoggedInResource resource = new LoggedInResource();
-        InputStream htmlfile = resource.getAdmin();
-        String html = new BufferedReader(new InputStreamReader(htmlfile)).lines().collect(Collectors.joining("+n"));
+        var resource = new LoggedInResource();
+        var htmlfile = resource.getAdmin();
+        var html = new BufferedReader(new InputStreamReader(htmlfile)).lines().collect(Collectors.joining("+n"));
         assertThat(html).startsWith("<html");
     }
 

@@ -27,19 +27,23 @@ import no.priv.bang.authservice.sampleclient.ShiroTestBase;
 class LoggedInResourceTest extends ShiroTestBase {
 
     @Test
-    void testGetIndex() {
+    void testGetIndex() throws Exception {
         var resource = new LoggedInResource();
         var htmlfile = resource.getIndex();
-        var html = new BufferedReader(new InputStreamReader(htmlfile)).lines().collect(Collectors.joining("+n"));
-        assertThat(html).startsWith("<html");
+        try(var reader = new BufferedReader(new InputStreamReader(htmlfile))) {
+            var html = reader.lines().collect(Collectors.joining("+n"));
+            assertThat(html).startsWith("<html");
+        }
     }
 
     @Test
-    void testGetAdmin() {
+    void testGetAdmin() throws Exception {
         var resource = new LoggedInResource();
         var htmlfile = resource.getAdmin();
-        var html = new BufferedReader(new InputStreamReader(htmlfile)).lines().collect(Collectors.joining("+n"));
-        assertThat(html).startsWith("<html");
+        try(var reader = new BufferedReader(new InputStreamReader(htmlfile))) {
+            var html = reader.lines().collect(Collectors.joining("+n"));
+            assertThat(html).startsWith("<html");
+        }
     }
 
 }

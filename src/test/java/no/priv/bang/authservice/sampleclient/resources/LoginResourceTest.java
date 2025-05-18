@@ -43,11 +43,13 @@ import no.priv.bang.osgi.service.mocks.logservice.MockLogService;
 class LoginResourceTest extends ShiroTestBase {
 
     @Test
-    void testGetLogin() {
+    void testGetLogin() throws Exception {
         var resource = new LoginResource();
         var htmlfile = resource.getLogin();
-        var html = new BufferedReader(new InputStreamReader(htmlfile)).lines().collect(Collectors.joining("+n"));
-        assertThat(html).startsWith("<html");
+        try(var reader = new BufferedReader(new InputStreamReader(htmlfile))) {
+            var html = reader.lines().collect(Collectors.joining("+n"));
+            assertThat(html).startsWith("<html");
+        }
     }
 
     @Test

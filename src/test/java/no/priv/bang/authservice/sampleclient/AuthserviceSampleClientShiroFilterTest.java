@@ -36,7 +36,7 @@ class AuthserviceSampleClientShiroFilterTest extends ShiroTestBase {
     private static ServletContext context;
 
     @BeforeAll
-    static void setup() throws Exception {
+    static void setup() {
         getSecurityManager();
         context = mock(ServletContext.class);
         when(context.getContextPath()).thenReturn("/authservice");

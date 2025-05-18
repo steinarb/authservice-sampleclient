@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2021 Steinar Bang
+ * Copyright 2019-2025 Steinar Bang
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,7 +29,6 @@ import org.apache.shiro.web.mgt.WebSecurityManager;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import no.priv.bang.authservice.sampleclient.AuthserviceSampleClientShiroFilter;
 
 class AuthserviceSampleClientShiroFilterTest extends ShiroTestBase {
 

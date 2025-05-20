@@ -1,6 +1,6 @@
 * Authclient sample client
 
-This project contains boilerplate code necessary for using the [[https://github.com/steinarb/authservice][authservice pluggable user administration service]].
+This project contains boilerplate code for using the [[https://github.com/steinarb/authservice][authservice pluggable user administration service]] (based on [[https://shiro.apache.org][apache shiro]])in a web application using the [[https://docs.osgi.org/specification/osgi.cmpn/8.0.0/service.http.whiteboard.html][OSGi web whiteboard]], running in [[https://karaf.apache.org][apache karaf]].
 
 ** Development Status
 [[https://github.com/steinarb/authservice-sampleclient/actions/workflows/authservice-sampleclient-maven-ci-build.yml][file:https://github.com/steinarb/authservice-sampleclient/actions/workflows/authservice-sampleclient-maven-ci-build.yml/badge.svg]]

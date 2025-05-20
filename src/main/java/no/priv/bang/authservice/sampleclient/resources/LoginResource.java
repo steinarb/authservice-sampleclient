@@ -82,21 +82,25 @@ public class LoginResource extends HtmlTemplateResource {
             var message = "unknown user";
             logger.warn(LOGIN_ERROR + message, e);
             var html = loadHtmlFileAndSetMessage(LOGIN_HTML, message, logservice);
+            fillFormValues(html, redirectUrl, username, password);
             return Response.status(Response.Status.UNAUTHORIZED).entity(html.html()).build();
         } catch (IncorrectCredentialsException  e) {
             var message = "wrong password";
             logger.warn(LOGIN_ERROR + message, e);
             Document html = loadHtmlFileAndSetMessage(LOGIN_HTML, message, logservice);
+            fillFormValues(html, redirectUrl, username, password);
             return Response.status(Response.Status.UNAUTHORIZED).entity(html.html()).build();
         } catch (LockedAccountException  e) {
             String message = "locked account";
             logger.warn(LOGIN_ERROR + message, e);
             var html = loadHtmlFileAndSetMessage(LOGIN_HTML, message, logservice);
+            fillFormValues(html, redirectUrl, username, password);
             return Response.status(Response.Status.UNAUTHORIZED).entity(html.html()).build();
         } catch (AuthenticationException e) {
             var message = "general authentication error";
             logger.warn(LOGIN_ERROR + message, e);
             var html = loadHtmlFileAndSetMessage(LOGIN_HTML, message, logservice);
+            fillFormValues(html, redirectUrl, username, password);
             return Response.status(Response.Status.UNAUTHORIZED).entity(html.html()).build();
         } catch (Exception e) {
             logger.warn("Login error: internal server error", e);

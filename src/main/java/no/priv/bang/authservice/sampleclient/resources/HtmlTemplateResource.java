@@ -22,6 +22,7 @@ import javax.ws.rs.InternalServerErrorException;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.FormElement;
 import org.osgi.service.log.LogService;
 
 public class HtmlTemplateResource {
@@ -49,6 +50,26 @@ public class HtmlTemplateResource {
         var html = loadHtmlFile(htmlFile, logservice);
         setError(html, message);
         return html;
+    }
+
+    FormElement fillFormValues(Document html, String originalUri, String username, String password) {
+        var form = findForm(html);
+        updateOriginalUri(form, originalUri);
+        var usernameInput = form.select("input[id=username]");
+        usernameInput.val(username);
+        var passwordInput = form.select("input[id=password]");
+        passwordInput.val(password);
+
+        return form;
+    }
+
+    FormElement findForm(Document html) {
+        return (FormElement) html.getElementsByTag("form").get(0);
+    }
+
+    void updateOriginalUri(FormElement form, String originalUri) {
+        var originalUriHidden = form.select("input[id=originalUri]");
+        originalUriHidden.val(originalUri);
     }
 
     static void setMessage(Document html, String message) {

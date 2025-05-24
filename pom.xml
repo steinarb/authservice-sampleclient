@@ -20,7 +20,7 @@
         <osgi-service-adapters.version>1.1.4</osgi-service-adapters.version>
         <junit.jupiter.version>5.12.2</junit.jupiter.version>
         <assertj.version>3.27.3</assertj.version>
-        <mockito.version>5.17.0</mockito.version>
+        <mockito.version>5.18.0</mockito.version>
         <mockrunner.version>2.0.7</mockrunner.version>
         <sonar.issue.ignore.multicriteria>e1</sonar.issue.ignore.multicriteria>
         <sonar.issue.ignore.multicriteria.e1.ruleKey>java:S6813</sonar.issue.ignore.multicriteria.e1.ruleKey>

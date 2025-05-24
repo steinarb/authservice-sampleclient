@@ -55,13 +55,13 @@ This procedure assumes that your webapp project is a multimodule maven build.
  2. Move the cloned project to the level of the modules in your multimodule build
  3. Change the POM to fit in:
     1. Change the groupId to match your project
-    2. Change the artifactId to match the groupId (maven-bundle-plugin is happiest when the last segment of the groupId matches the first part of the artifactId.  The bundle name and the default package will become groupId+artifactId but with only a single copy of the last part of groupId and first part of the artifactId)
-    3. (Not strictly necessary) Make your parent POM be the parent of the project
-    4. (If you set a parent) Remove the <version>
+    2. Change the artifactId to match the groupId
+    3. Make your parent POM be the parent of the project
+    4. Remove the <version>
  4. Add the new module to <modules> in your top POM
  5. Change the HTTP_WHITEBOARD_CONTEXT_PATH in AuthserviceSampleClientServletContextHelper to what your webapp's context path to be
  6. change the src/main/resource/shiro.ini to limit access to sub-paths of your webapp (e.g. by using pairs of roles and paths like the configuration for the /admin path)
- 7. (Not strictly necessary but more aesthetically pleasing) change the HTTP_WHITEBOARD_CONTEXT_NAME to something more appropriate to the path, and change all other usages (in this project AuthserviceSampleClientShiroFilter and AuthserviceSampleClientServlet)
+ 7. HTTP_WHITEBOARD_CONTEXT_NAME to something more appropriate to the path, and change all other usages (in this project AuthserviceSampleClientShiroFilter and AuthserviceSampleClientServlet)
 
 You can change the name of the classes to be more appropriate, but that doesn't have any other effect than aesthetics.  No classes are exported from the bundle.
 

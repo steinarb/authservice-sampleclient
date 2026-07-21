@@ -13,7 +13,7 @@
         <karaf.version>4.4.11</karaf.version>
         <maven.bundle.plugin.version>6.0.2</maven.bundle.plugin.version>
         <karaf-feature-name>authservice-sampleclient</karaf-feature-name>
-        <authservice.version>3.0.15</authservice.version>
+        <authservice.version>3.0.17</authservice.version>
         <shiro.version>2.2.1</shiro.version>
         <jersey-feature.version>1.9.11</jersey-feature.version>
         <bang-servlet.version>3.0.6</bang-servlet.version>
